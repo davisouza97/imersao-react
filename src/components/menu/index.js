@@ -3,15 +3,16 @@ import Logo from "../../assets/img/logo.png";
 //import ButtonLink from "./components/ButtonLInk";
 import "./menu.css";
 import Button from '../button';
+import { Link } from "react-router-dom";
 
 function Menu() {
     return (
         <nav className="Menu">
-            <a href="/">
+            <Link to="/">
                 <img className="Logo" src={Logo} alt="davilflix logo"></img>
-            </a>
+            </Link>
 
-            <Button as="a" className="ButtonLink" href="/">
+            <Button as={Link} className="ButtonLink" to="/cadastro/video">
                 Novo vídeo
             </Button> 
         </nav>

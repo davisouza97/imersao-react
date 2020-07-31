@@ -27,7 +27,7 @@ function CadastroCategoria() {
   }
 
   useEffect(() => {
-    const URL = 'http://localhost:8080/categorias';
+    const URL = 'http://davi-flix.herokuapp.com/categorias';
     fetch(URL).then(async (response) => {
       const categoriasReposnse = await response.json();
       console.log(categoriasReposnse);

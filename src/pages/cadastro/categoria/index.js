@@ -3,34 +3,25 @@ import { Link } from 'react-router-dom';
 import PageDefalt from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/button';
+import useForm from '../../../hooks/useForm';
 
 function CadastroCategoria() {
   const categoriaDefalt = {
-    nome: '',
+    titulo: '',
     descricao: '',
     cor: '#000000',
   };
 
+  const { handlerChange, values, clearForm } = useForm(categoriaDefalt);
+
   const [categorias, setCategorias] = useState([]);
-  const [values, setValues] = useState(categoriaDefalt);
-
-  function setValue(key, value) {
-    setValues({
-      ...values,
-      [key]: value,
-    });
-  }
-
-  function handlerChange(event) {
-    const { name, value } = event.target;
-    setValue(name, value);
-  }
 
   useEffect(() => {
-    const URL = 'http://davi-flix.herokuapp.com/categorias';
+    const URL = window.location.href.includes('localhost')
+      ? 'http://localhost:8080/categorias'
+      : 'http://davi-flix.herokuapp.com/categorias';
     fetch(URL).then(async (response) => {
       const categoriasReposnse = await response.json();
-      console.log(categoriasReposnse);
       setCategorias([...categoriasReposnse]);
     });
   }, []);
@@ -45,15 +36,15 @@ function CadastroCategoria() {
       <form onSubmit={function handlerSubmit(event) {
         event.preventDefault();
         setCategorias([...categorias, values]);
-        setValues(categoriaDefalt);
+        clearForm();
       }}
       >
 
         <FormField
           type="text"
-          label="Nome"
-          name="nome"
-          value={values.nome}
+          label="Titulo"
+          name="titulo"
+          value={values.titulo}
           onChange={handlerChange}
         />
 

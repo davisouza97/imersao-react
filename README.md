@@ -1,3 +1,3 @@
 # imersao-react
 
-REsultado da imersão React da Alura
+Resultado da imersão React da Alura
